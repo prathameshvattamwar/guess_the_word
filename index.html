@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guess the Word Game</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-container">
+        <h1>Guess the Word</h1>
+
+        <div class="difficulty-selector">
+            <button data-level="easy" onclick="setLevel('easy')">Easy</button>
+            <button data-level="medium" class="active" onclick="setLevel('medium')">Medium</button>
+            <button data-level="hard" onclick="setLevel('hard')">Hard</button>
+        </div>
+
+        <div class="word-display">
+        </div>
+        <p class="hint-text">Hint: <b></b></p>
+        <div class="game-stats">
+            <p class="guesses-text">Remaining Guesses: <b></b></p>
+            <p class="wrong-letters">Wrong Letters: <b></b></p>
+        </div>
+        <button class="reset-button">Reset Game</button>
+    </div>
+
+    <div class="modal-overlay" id="result-modal">
+        <div class="modal-content">
+            <img src="" alt="Result Image" id="result-image">
+            <h2 id="result-title"></h2>
+            <p id="result-message"></p>
+            <button class="play-again-button">Play Again</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script>
+        // Add JS to handle active state for difficulty buttons
+        const difficultyButtons = document.querySelectorAll('.difficulty-selector button');
+        difficultyButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                difficultyButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                // setLevel(button.dataset.level) is already called by onclick
+            });
+        });
+         // Ensure the default selected level in JS matches the initially active button
+        document.querySelector(`.difficulty-selector button[data-level="${selectedLevel}"]`).classList.add('active');
+
+    </script>
+</body>
+</html>
